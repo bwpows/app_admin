@@ -1,5 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import { useRouter } from 'vue-router';
+import {store} from "../store";
 
 interface returnResult {
     code: number,
@@ -10,6 +11,7 @@ class HttpRequest {
     public readonly baseUrl: string;
 
     constructor() {
+        // this.baseUrl = 'https://app.bwpow.com:3000/'
         this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.38:3000/'
     }
 
@@ -48,13 +50,14 @@ class HttpRequest {
         })
 
         instance.interceptors.response.use((response: any) => {
-            console.log(response)
+            console.log('1111')
             if(response.status === 200 || response.status === 201) {
                 return response;
             }else if(response.status === 401){
                 this.login()
                 return Promise.reject(response);
             }else{
+                console.log(response, '错误')
                 return Promise.reject(response);
             }
         }, error => {
@@ -65,6 +68,15 @@ class HttpRequest {
                 console.log('你无权操作')
                 this.login()
                 return Promise.reject(error);
+            }else{
+                // console.log(error, '错误')
+                store.commit('setSnackbar', {
+                    show: true,
+                    message: '系统错误，错误码 ' + error.response.status
+                })
+                console.log(store.state.snackbar)
+
+                // return Promise.reject({co});
             }
         })
     }

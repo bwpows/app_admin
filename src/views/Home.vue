@@ -1,4 +1,29 @@
 <script setup lang="ts">
+
+import { Ref, ref, onMounted } from 'vue';
+import { getReviewStatus, putReviewStatus } from '../api/review';
+let reviewStatus:Ref<boolean> = ref(false)
+let reviewStatusloading:Ref<boolean> = ref(false)
+
+
+onMounted(() => {
+    getStatus()
+})
+
+const getStatus = async () => {
+    let res = await getReviewStatus()
+    if(res.data.code == 200){
+        reviewStatus.value = res.data.data.status
+    }
+}
+
+const updateStatus = async ()=>{
+    reviewStatusloading.value = true
+    await putReviewStatus({status: reviewStatus.value})
+    await getStatus()
+    reviewStatusloading.value = false
+}
+
 </script>
 
 <template>
@@ -11,8 +36,11 @@
         </v-card>
       </v-col>
       <v-col xs="12" sm="6" md="4" lg="3" xl="3">
-        <v-card flat class="pa-6 rounded-lg">
-          242342
+        <v-card flat class="pa-5 rounded-lg d-flex justify-space-between align-center">
+          <div class="text-body-1">小程序审核</div>
+          <div>
+            <v-switch hide-details inset @change="updateStatus" :label="reviewStatus?'审核中':'未审核'" color="primary" v-model="reviewStatus" :loading="(reviewStatusloading)"></v-switch>
+          </div>
         </v-card>
       </v-col>
       <v-col xs="12" sm="6" md="4" lg="3" xl="3">

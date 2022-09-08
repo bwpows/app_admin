@@ -35,35 +35,42 @@ const taskTableData: TaskDataDTO[] = [
   },
 ]
 
+let snackbar = ref<Boolean>(false)
+
 onMounted(() => {
 
 })
 
+const openSnackbar = () => {
+    snackbar.value = true
+}
+
 </script>
 
 <template>
-  <v-card class="pa-4 ma-6 rounded-lg" flat>
+<v-card class="pa-4 ma-6 rounded-lg" flat>
+
     <v-table>
-      <thead>
-        <tr>
-          <th class="text-left" v-for="item in taskTableHeader" :key="item.text">
-            {{ item.text }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in taskTableData" :key="item.created_time">
-          <td v-for="(header, index) in taskTableHeader" :key="index">
-            <div v-if="header.value == 'amount'">
-              <div :class="item.type == 2?'text-error':'text-success'" class="primary--text">
-                {{ item.type == 2?'-':'+' }}
-                {{ item[header.value] }}
-              </div>
-            </div>
-            <div v-else>{{ item[header.value] }}</div>
-          </td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th class="text-left" v-for="item in taskTableHeader" :key="item.text">
+                {{ item.text }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in taskTableData" :key="item.created_time">
+                <td v-for="(header, index) in taskTableHeader" :key="index">
+                    <div v-if="header.value == 'amount'">
+                        <div :class="item.type == 2?'text-error':'text-success'" class="primary--text">
+                        {{ item.type == 2?'-':'+' }}
+                        {{ item[header.value] }}
+                        </div>
+                    </div>
+                    <div v-else>{{ item[header.value] }}</div>
+                </td>
+            </tr>
+        </tbody>
     </v-table>
-  </v-card>
+</v-card>
 </template>

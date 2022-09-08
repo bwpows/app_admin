@@ -26,8 +26,7 @@ const list = [
         :value="item"
         :to="item.to"
         active-color="primary"
-        height="54"
-        class="my-2 rounded-lg align-center"
+        class="my-2 rounded-lg d-flex align-center"
       >
         <div :class="item.icon" class="text-h5 mr-5 ml-1"></div>
 
@@ -42,3 +41,12 @@ const list = [
   </v-navigation-drawer>
 
 </template>
+
+<style>
+
+  .v-list-item__content{
+    display: flex;
+    align-items: center;
+  }
+
+</style>

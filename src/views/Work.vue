@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, Ref } from 'vue';
 import { getAllWork } from '../api/work';
 import TimeFun from '../utils/formatTime';
 
@@ -28,59 +28,54 @@ onMounted(() => {
   getAll()
 })
 
+
+let loading: Ref<boolean> = ref(true)
 async function getAll(){
-  let res = await getAllWork()
-  if(res.data.code == 200) taskTableData.value = res.data.data || [];
+    let res = await getAllWork()
+    loading.value = false
+    if(res.data.code == 200) taskTableData.value = res.data.data || [];
 }
 
 </script>
 
 <template>
+
   <v-card class="pa-4 ma-6 rounded-lg" flat>
-    <v-table>
-      <thead>
-        <tr>
-          <th class="text-left" v-for="item in taskTableHeader" :key="item.text" :style="{'width': item.width}">
-            {{ item.text }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item,index in taskTableData" :key="index">
-          <td v-for="(header, index) in taskTableHeader" :style="{'width': header.width}">
-            <div v-if="header.value == 'status'" :key="index">
-              <v-chip :color="!item.is_delete?'success':'error'" size="small">
-                {{ !item.is_delete?'正常状态':'删除状态' }}
+
+      <DataTable v-if="!loading" :headers="taskTableHeader" :items="taskTableData">
+          <template #status="{ items }">
+              <v-chip :color="!items.is_delete?'success':'error'" size="small">
+                  {{ !items.is_delete?'正常状态':'删除状态' }}
               </v-chip>
-            </div>
-            <div v-else-if="header.value == 'operate'">
+          </template>
+          <template #operate="{ items }">
               <v-btn color="primary" size="small" flat class="mr-4">下架</v-btn>
-              <v-btn color="success" v-if="item.status == 2" size="small" flat>恢复</v-btn>
-              <v-btn color="error" v-if="item.status == 1" size="small" flat>删除</v-btn>
-            </div>
-            <div v-else-if="header.value == 'views'">
-              {{ item[header.value].length }}
-            </div>
-            <div v-else-if="header.value == 'created_time' || header.value == 'end_date'">
-              {{ TimeFun.formatTime(new Date(item[header.value]), 'yyyy-MM-dd HH:ss') }}
-            </div>
-            <div v-else-if="header.value == 'likes'">
-              {{ item[header.value].length }}
-            </div>
-            <div v-else-if="header.value == 'is_public'">
-              <v-chip :color="item.is_public?'primary':'error'" size="small">
-                {{ item.is_public?'是':'否' }}
+              <v-btn color="success" v-if="items.status == 2" size="small" flat>恢复</v-btn>
+              <v-btn color="error" v-if="items.status == 1" size="small" flat>删除</v-btn>
+          </template>
+          <template #views="{ item }">
+              {{ item.length }}
+          </template>
+          <template #likes="{ item }">
+              {{ item.length }}
+          </template>
+          <template #created_time="{ items }">
+              {{ TimeFun.formatTime(new Date(items.created_time), 'yyyy-MM-dd HH:ss') }}
+          </template>
+          <template #end_time="{ items }">
+              {{ TimeFun.formatTime(new Date(items.end_time), 'yyyy-MM-dd HH:ss') }}
+          </template>
+          <template #is_public="{ item }">
+              <v-chip :color="item?'primary':'error'" size="small">
+                  {{ item?'是':'否' }}
               </v-chip>
-            </div>
-            <div v-else-if="header.value == 'creator' && item.users.length > 0">
-                {{item.users[0].username || '-'}}
-            </div>
-            <div v-else>
-              {{ item[header.value] }}
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
+          </template>
+
+          <template #creator="{ items }">
+              <div>
+                  {{items.users[0]? items.users[0].username : '-'}}
+              </div>
+          </template>
+      </DataTable>
   </v-card>
 </template>

@@ -19,7 +19,7 @@ const themes = {
       headerBG: '#FFFFFF',
       delDialog: '#FEF8F8',
       confirmDialog: '#FDF9F4',
-      mainBG: 'F4F6FA'
+      mainBG: '#F4F6FA'
     }
   },
   dark: {

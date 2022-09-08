@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
-import { createVuetify } from 'vuetify';
 
-// const themeIsDark = this.$vuetify.theme.current
+    import SnackBar from './Snackbar.vue'
+    import { useTheme } from 'vuetify';
+
+    let theme = useTheme()
+
+    let bgc = theme.themes.value[theme.global.name.value].colors.mainBG;
 
 </script>
 
 <template>
-
-  <v-main fluid class="mainBG" :style="{backgroundColor: '#'+ $vuetify.theme.themes[ $vuetify.theme.current ].colors.mainBG }">
-    <router-view :key="$route.path" />
-  </v-main>
+    <v-main fluid :style="{ 'background-color': bgc}">
+        <SnackBar />
+        <router-view :key="$route.path" />
+    </v-main>
 </template>
