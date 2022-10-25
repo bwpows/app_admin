@@ -3,11 +3,12 @@ import logoSvg from '../assets/logo.svg'
 
 
 const list = [
-  { text: '主控台', to: '/', icon: 'iconfont icon-dashboard'},
-  { text: '任务列表', to: '/task', icon: 'iconfont icon-task' },
-  { text: '作品列表', to: '/work', icon: 'iconfont icon-work' },
-  { text: '消费记录', to: '/consumption', icon: 'iconfont icon-consumption' },
-  { text: '客户列表', to: '/customer', icon: 'iconfont icon-customer' },
+    { text: '主控台', to: '/', icon: 'iconfont icon-dashboard'},
+    { text: '任务列表', to: '/task', icon: 'iconfont icon-task' },
+    { text: '作品列表', to: '/work', icon: 'iconfont icon-work' },
+    { text: '消费记录', to: '/consumption', icon: 'iconfont icon-consumption' },
+    { text: '客户列表', to: '/customer', icon: 'iconfont icon-customer' },
+    { text: '标签列表', to: '/tag', icon: 'iconfont icon-biaoqian' }
 ]
 
 </script>

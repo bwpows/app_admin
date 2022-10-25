@@ -10,6 +10,10 @@ interface taskHeaderDTO {
   width?: string;
 }
 
+let page_count: Ref<Number> = ref(20)
+let current_page: Ref<Number> = ref(1)
+let total: Ref<Number> = ref(0)
+
 const taskTableHeader: taskHeaderDTO[] = [
   { text: '创建时间', value: 'created_time', width: '160px' },
   { text: '标题', value: 'title' },
@@ -33,7 +37,7 @@ let loading: Ref<boolean> = ref(true)
 async function getAll(){
     let res = await getAllWork()
     loading.value = false
-    if(res.data.code == 200) taskTableData.value = res.data.data || [];
+    if(res.code == 200) taskTableData.value = res.data || [];
 }
 
 </script>

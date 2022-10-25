@@ -24,8 +24,8 @@ watch(mobile, (val) => {
 
 let submit = async () => {
     let res = await signIn(loginInfo.value)
-    if(res.data.code == 200){
-        localStorage.setItem('token', res.data.data.token)
+    if(res.code == 200){
+        localStorage.setItem('token', res.data.token)
         router.replace('/')
     }
 }

@@ -49,28 +49,13 @@ const openSnackbar = () => {
 
 <template>
 <v-card class="pa-4 ma-6 rounded-lg" flat>
-
-    <v-table>
-        <thead>
-            <tr>
-                <th class="text-left" v-for="item in taskTableHeader" :key="item.text">
-                {{ item.text }}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in taskTableData" :key="item.created_time">
-                <td v-for="(header, index) in taskTableHeader" :key="index">
-                    <div v-if="header.value == 'amount'">
-                        <div :class="item.type == 2?'text-error':'text-success'" class="primary--text">
-                        {{ item.type == 2?'-':'+' }}
-                        {{ item[header.value] }}
-                        </div>
-                    </div>
-                    <div v-else>{{ item[header.value] }}</div>
-                </td>
-            </tr>
-        </tbody>
-    </v-table>
+    <DataTable :headers="taskTableHeader" :items="taskTableData">
+        <template #amount="{ items }">
+            <div :class="items.type == 2?'text-error':'text-success'" class="primary--text">
+                {{ items.type == 2?'-':'+' }}
+                {{ items.amount }}
+            </div>
+        </template>
+    </DataTable>
 </v-card>
 </template>

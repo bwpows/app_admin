@@ -32,8 +32,8 @@ let taskTableData = ref([])
 
 const getClient = async ()=>{
   let res = await getAllUser()
-  if(res.data.code == 200){
-    taskTableData.value = (res.data.data || [])
+  if(res.code == 200){
+    taskTableData.value = (res.data || [])
   }
 }
 
@@ -61,7 +61,7 @@ const deleteUser = async () => {
     } else {
         res = await removeUserById(deleteDialog.value._id)
     }
-    if(res.data.code == 200){
+    if(res.code == 200){
         closeDeleteDialog()
         getClient()
     }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue';
+import {ref, onMounted, Ref} from 'vue';
 import { getAllTask, deleteTask } from '../api/task';
 import TimeFun from '../utils/formatTime'
 
@@ -30,12 +30,12 @@ const taskStatusList = ref([
   { text: '未超时', value: 4 },
 ])
 
-let selectedStauts = ref(undefined)
+let selectedStatus = ref(undefined)
 
-let page_count = ref(10)
-let current_page = ref(1)
-let total = ref(0)
-let loading = ref(true)
+let page_count: Ref<Number> = ref(20)
+let current_page: Ref<Number> = ref(1)
+let total: Ref<Number> = ref(0)
+let loading: Ref<boolean> = ref(true)
 
 onMounted(() => {
   getAll()
@@ -43,7 +43,7 @@ onMounted(() => {
 
 // 获取任务
 async function getAll(){
-  let obj = {
+  let obj:any = {
     current_page: current_page.value,
     page_count: page_count.value,
       ...changeConditions()
@@ -51,7 +51,7 @@ async function getAll(){
 
   loading.value = true
   let res = await getAllTask(obj)
-  if(res.data.code == 200) {
+  if(res.code == 200) {
     taskTableData.value = res.data.data || [];
     total.value = res.data.total
   }
@@ -60,19 +60,19 @@ async function getAll(){
 
 
 function changeConditions(){
-    if(selectedStauts.value == 1){
+    if(selectedStatus.value == 1){
         return {
             is_completed: true
         }
-    }else if(selectedStauts.value == 2){
+    }else if(selectedStatus.value == 2){
         return {
             is_completed: false
         }
-    }else if(selectedStauts.value == 3) {
+    }else if(selectedStatus.value == 3) {
         return {
             is_timeout: true
         }
-    }else if(selectedStauts.value == 4) {
+    }else if(selectedStatus.value == 4) {
         return {
             is_timeout: false
         }
@@ -95,7 +95,7 @@ async function deleteTaskById(item:any){
   <v-card class="pa-4 ma-6 rounded-lg" flat>
       <div class="mb-4">
           <v-select
-              v-model="selectedStauts"
+              v-model="selectedStatus"
               :items="taskStatusList"
               hide-details
               color="primary rounded"

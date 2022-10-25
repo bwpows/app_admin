@@ -3,6 +3,7 @@ import 'vuetify/styles'
 
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import {DisplayBreakpoint, DisplayThresholds} from "vuetify/vuetify";
 
 const themes = {
   light: {
@@ -36,14 +37,31 @@ const themes = {
       headerBG: '#121212',
       delDialog: '#211e1e',
       confirmDialog: '#1f1e1d',
-      mainBG: '000000'
+      mainBG: '#000000'
     }
+  }
+}
+
+interface DisplayOptions {
+  mobileBreakpoint?: number | DisplayBreakpoint;
+  thresholds?: Partial<DisplayThresholds>;
+}
+
+const display: DisplayOptions = {
+  mobileBreakpoint: 'sm',
+  thresholds: {
+    xs: 0,
+    sm: 340,
+    md: 540,
+    lg: 800,
+    xl: 1280
   }
 }
 
 export default createVuetify({
   components,
   directives,
+  display,
   theme: {
     defaultTheme: 'light',
     themes

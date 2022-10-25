@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import Index from '../layouts/Index.vue'
 const routes = [
   {
@@ -45,6 +45,14 @@ const routes = [
           title: '客户管理'
         }
       },
+      {
+        name: "Tag",
+        component: () => import('../views/Tag.vue'),
+        path: "/tag",
+        meta: {
+          title: '标签列表'
+        }
+      }
     ],
   },
   {
@@ -55,6 +63,6 @@ const routes = [
 ]
 
 export default createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
