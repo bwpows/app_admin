@@ -12,7 +12,6 @@ onMounted(() => {
 
 const getStatus = async () => {
     let res = await getReviewStatus()
-    console.log(res)
     if(res.code == 200){
         reviewStatus.value = res.data.status
     }

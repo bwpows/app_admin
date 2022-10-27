@@ -35,15 +35,10 @@ const taskTableData: TaskDataDTO[] = [
   },
 ]
 
-let snackbar = ref<Boolean>(false)
 
 onMounted(() => {
 
 })
-
-const openSnackbar = () => {
-    snackbar.value = true
-}
 
 </script>
 

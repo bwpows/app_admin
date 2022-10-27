@@ -2,6 +2,7 @@
 
 import {ref, Ref} from "vue";
 import {addTag} from "../../../api/tag";
+import {store} from "../../../store";
 
 let dialog: Ref<boolean> = ref(false)
 let name: Ref<string> = ref("")
@@ -11,10 +12,18 @@ let type: Ref<number> = ref(1)
 async function add(){
     let res = await addTag({name: name.value, icon: icon.value, type: type.value})
     console.log(res)
-    close()
-    console.log(name.value)
-    console.log(icon.value)
-    console.log(type.value)
+    if(res.code == 200){
+        store.commit('setSnackbar', {
+            show: true,
+            message: '添加成功'
+        })
+        close()
+    }else{
+        store.commit('setSnackbar', {
+            show: true,
+            message: '添加失败'
+        })
+    }
 }
 
 function close(){
