@@ -5,7 +5,7 @@ import {getAllTag} from "../api/tag";
 import CreateTag from "../components/views/Tag/CreateTag.vue"
 import TimeFun from '../utils/formatTime'
 
-let page_count: Ref<Number> = ref(20)
+let page_count: Ref<Number> = ref(15)
 let current_page: Ref<Number> = ref(1)
 let total: Ref<Number> = ref(0)
 let loading: Ref<Boolean> = ref(true)
@@ -16,7 +16,6 @@ onMounted(()=>{
 
 let tableData = ref([]);
 const tableHeader = ref([
-    // { text: 'ID', value: '_id' },
     { text: '创建时间', value: 'created_time' },
     { text: '图标', value: 'icon' },
     { text: '名称', value: 'name' },
@@ -29,8 +28,8 @@ const tableHeader = ref([
 
 async function getData() {
     let data:any = {
-        current_page: 1,
-        page_count: 20
+        current_page: current_page.value,
+        page_count: page_count.value
     }
     let obj = await getAllTag(data)
     tableData.value = obj.data.data
@@ -61,7 +60,9 @@ async function getData() {
                     </v-chip>
                 </template>
                 <template #creator="{ items }">
-                    {{ items.users[0].username }}
+                    <div v-if="items.users[0]">
+                        {{ items.users[0].username }}
+                    </div>
                 </template>
                 <template #created_time="{ item }">
                     {{ TimeFun.formatTime(new Date(item), 'yyyy-MM-dd HH:ss') }}
@@ -71,6 +72,15 @@ async function getData() {
                     <v-btn flat size="small" color="error">删除</v-btn>
                 </template>
             </DataTable>
+
+
+            <v-pagination
+                class="mt-3"
+                v-model="current_page"
+                :length="Math.ceil(total/page_count)"
+                :total-visible="7"
+                @update:modelValue="getData()"
+            ></v-pagination>
         </v-card>
     </div>
 </template>

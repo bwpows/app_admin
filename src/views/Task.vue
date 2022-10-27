@@ -85,7 +85,7 @@ async function deleteTaskById(item:any){
   item.deleteLoading = true
   let res = await deleteTask(item._id)
   if(res.data.code === 200) {
-    getAll()
+    await getAll()
   }
 }
 
