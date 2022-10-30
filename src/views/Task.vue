@@ -32,9 +32,9 @@ const taskStatusList = ref([
 
 let selectedStatus = ref(undefined)
 
-let page_count: Ref<Number> = ref(20)
-let current_page: Ref<Number> = ref(1)
-let total: Ref<Number> = ref(0)
+let page_count: Ref<number> = ref(20)
+let current_page: Ref<number> = ref(1)
+let total: Ref<number> = ref(0)
 let loading: Ref<boolean> = ref(true)
 
 onMounted(() => {

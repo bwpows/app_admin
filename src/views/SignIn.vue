@@ -26,7 +26,7 @@ let submit = async () => {
     let res = await signIn(loginInfo.value)
     if(res.code == 200){
         localStorage.setItem('token', res.data.token)
-        router.replace('/')
+        await router.replace('/')
     }
 }
 

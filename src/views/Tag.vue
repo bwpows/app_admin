@@ -5,10 +5,10 @@ import {getAllTag} from "../api/tag";
 import CreateTag from "../components/views/Tag/CreateTag.vue"
 import TimeFun from '../utils/formatTime'
 
-let page_count: Ref<Number> = ref(15)
-let current_page: Ref<Number> = ref(1)
-let total: Ref<Number> = ref(0)
-let loading: Ref<Boolean> = ref(true)
+let page_count: Ref<number> = ref(15)
+let current_page: Ref<number> = ref(1)
+let total: Ref<number> = ref(0)
+let loading: Ref<boolean> = ref(true)
 
 onMounted(()=>{
     getData()
@@ -23,7 +23,7 @@ const tableHeader = ref([
     { text: '类型', value: 'type' },
     { text: '是否私有', value: 'is_public' },
     { text: '状态', value: 'is_deleted' },
-    { text: '操作', value: 'operate', width: '180px' },
+    { text: '操作', value: 'operate', width: '180px' }
 ])
 
 async function getData() {
