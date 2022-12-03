@@ -1,7 +1,9 @@
 export interface IRootStore {
     count: number;
     aaa: string;
-    snackbar: Object
+    snackbar: Object,
+    isMobile: boolean,
+    menuExpand?: boolean
 }
 
 export interface ISnackBar {

@@ -12,13 +12,13 @@ class HttpRequest {
 
     constructor() {
         // this.baseUrl = 'https://app.bwpow.com:3000/'
-        this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.38:3000/'
+        this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.38:3000/';
     }
 
     login() {
         localStorage.removeItem('token');
         const router = useRouter()
-        router.replace('/signin')
+        router.replace('/sign-in')
     }
 
     getToken() {
@@ -61,6 +61,12 @@ class HttpRequest {
         }, error => {
             if(error.response.status === 401){
                 this.login()
+                return Promise.reject(error);
+            }else if(error.response.status === 400){
+                store.commit('setSnackbar', {
+                    show: true,
+                    message: error.response.data.message || '参数错误'
+                })
                 return Promise.reject(error);
             }else if(error.response.status === 403){
                 this.login()

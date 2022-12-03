@@ -1,21 +1,30 @@
-import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import Index from '../layouts/Index.vue'
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Index,
+    redirect: '/home',
     children: [
       {
         name: "Home",
-        component: () => import('../views/Home.vue'),
-        path: "/",
+        component: () => import('../views/Home/Index.vue'),
+        path: "/home",
+        meta: {
+          title: '主控台'
+        }
+      },
+      {
+        name: "Home",
+        component: () => import('../views/Home/Index.vue'),
+        path: "/home",
         meta: {
           title: '主控台'
         }
       },
       {
         name: "Task",
-        component: () => import('../views/Task.vue'),
+        component: () => import('../views/Task/Index.vue'),
         path: "/task",
         meta: {
           title: '任务管理'
@@ -23,7 +32,7 @@ const routes = [
       },
       {
         name: "Customer",
-        component: () => import('../views/Customer.vue'),
+        component: () => import('../views/Customer/Index.vue'),
         path: "/customer",
         meta: {
           title: '作品管理'
@@ -31,7 +40,7 @@ const routes = [
       },
       {
         name: "Consumption",
-        component: () => import('../views/Consumption.vue'),
+        component: () => import('../views/Consumption/Index.vue'),
         path: "/consumption",
         meta: {
           title: '消费记录'
@@ -39,7 +48,7 @@ const routes = [
       },
       {
         name: "Work",
-        component: () => import('../views/Work.vue'),
+        component: () => import('../views/Work/Index.vue'),
         path: "/work",
         meta: {
           title: '客户管理'
@@ -47,18 +56,26 @@ const routes = [
       },
       {
         name: "Tag",
-        component: () => import('../views/Tag.vue'),
+        component: () => import('../views/Tag/Index.vue'),
         path: "/tag",
         meta: {
           title: '标签列表'
+        }
+      },
+      {
+        name: "Message",
+        component: () => import('../views/Message/Index.vue'),
+        path: "/message",
+        meta: {
+          title: '留言管理'
         }
       }
     ],
   },
   {
     name: "SignIn",
-    component: () => import('../views/SignIn.vue'),
-    path: "/signin",
+    component: () => import('../views/SignIn/Index.vue'),
+    path: "/sign-in",
   }
 ]
 

@@ -11,7 +11,6 @@ let type: Ref<number> = ref(1)
 
 async function add(){
     let res = await addTag({name: name.value, icon: icon.value, type: type.value})
-    console.log(res)
     if(res.code == 200){
         store.commit('setSnackbar', {
             show: true,
@@ -69,7 +68,10 @@ let selectType: TaskDataDTO[] = [
                     <v-text-field v-model="name" label="请输入名称"></v-text-field>
                     <v-text-field v-model="icon" label="请选择图标"></v-text-field>
                     <v-select label="请选择类型" :items="selectType" v-model="type" item-title="name" item-value="value"></v-select>
-                    <v-btn class="mt-3" color="primary" :flat="true" size="large" @click="add">添加</v-btn>
+                    <div class="d-flex justify-end">
+                        <v-btn class="mt-3" color="primary" :flat="true" size="large" @click="add">添加</v-btn>
+                        <v-btn class="mt-3 ml-12" color="primary" variant="outlined" :flat="true" size="large" @click="close">取消</v-btn>
+                    </div>
                 </v-card-text>
             </v-card>
         </v-dialog>

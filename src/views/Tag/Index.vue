@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 import {onMounted, ref, Ref} from "vue";
-import {getAllTag} from "../api/tag";
-import CreateTag from "../components/views/Tag/CreateTag.vue"
-import TimeFun from '../utils/formatTime'
+import {getAllTag} from "@/api/tag";
+import CreateTag from "@/components/views/Tag/CreateTag.vue"
+import TimeFun from '@/utils/formatTime'
 
 let page_count: Ref<number> = ref(15)
 let current_page: Ref<number> = ref(1)

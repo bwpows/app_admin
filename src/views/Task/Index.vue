@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref, onMounted, Ref} from 'vue';
-import { getAllTask, deleteTask } from '../api/task';
-import TimeFun from '../utils/formatTime'
+import { getAllTask, deleteTask } from '@/api/task';
+import TimeFun from '@/utils/formatTime'
 
 interface TaskHeaderDTO {
   text: string;

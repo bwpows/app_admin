@@ -11,7 +11,7 @@
 
 <template>
     <v-main fluid :style="{ 'background-color': bgc}">
-        <SnackBar />
+<!--        <SnackBar />-->
         <router-view :key="$route.path" />
     </v-main>
 </template>

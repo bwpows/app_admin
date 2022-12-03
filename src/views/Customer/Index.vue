@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {ref, onMounted, Ref} from 'vue';
-import {delUserById, getAllUser, removeUserById} from '../api/customer';
-import http from '../axios/index';
-import TimeFun from '../utils/formatTime'
-import DeleteDialog from '../components/dialog/DeleteDialog.vue'
+import {delUserById, getAllUser, removeUserById} from '@/api/customer';
+import http from '@/axios/index';
+import TimeFun from '@/utils/formatTime'
+import DeleteDialog from '@/components/dialog/DeleteDialog.vue'
 
 onMounted(() => {
     getClient()
