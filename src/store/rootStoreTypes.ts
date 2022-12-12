@@ -3,7 +3,8 @@ export interface IRootStore {
     aaa: string;
     snackbar: Object,
     isMobile: boolean,
-    menuExpand?: boolean
+    menuExpand?: boolean,
+    showDrawer: boolean
 }
 
 export interface ISnackBar {

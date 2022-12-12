@@ -15,6 +15,10 @@ const mutations = {
 
     setMenuExpand(state: IRootStore, val: boolean) {
         state.menuExpand = val
+    },
+
+    setShowDrawer(state: IRootStore, val: boolean) {
+        state.showDrawer = val
     }
 }
 
@@ -24,7 +28,8 @@ export const store = createStore<IRootStore>({
         aaa: '',
         snackbar: {},
         isMobile: false,
-        menuExpand: false
+        menuExpand: false,
+        showDrawer: true
     },
     mutations: mutations,
 })

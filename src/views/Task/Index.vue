@@ -2,23 +2,8 @@
 import {ref, onMounted, Ref} from 'vue';
 import { getAllTask, deleteTask } from '@/api/task';
 import TimeFun from '@/utils/formatTime'
+import {taskTableHeader} from "@/views/Task/data";
 
-interface TaskHeaderDTO {
-  text: string;
-  value: string;
-}
-
-const taskTableHeader: TaskHeaderDTO[] = [
-  { text: '创建时间', value: 'created_time' },
-  { text: '任务名称', value: 'content' },
-  { text: '结束时间', value: 'end_date' },
-  // { text: '是否取消', value: 'is_cancel' },
-  // { text: '是否完成', value: 'is_completed' },
-  { text: '状态', value: 'status' },
-  { text: '创建者', value: 'creator' },
-  // { text: '超时', value: 'is_timeout' },
-  { text: '操作', value: 'operate' },
-]
 
 let taskTableData:any = ref(null)
 

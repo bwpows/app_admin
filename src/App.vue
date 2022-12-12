@@ -12,6 +12,7 @@ onMounted(() => {
     router.replace('/sign-in')
   }
 })
+
 </script>
 
 <template>

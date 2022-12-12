@@ -2,29 +2,11 @@
 import { ref, onMounted, Ref } from 'vue';
 import { getAllWork } from '@/api/work';
 import TimeFun from '@/utils/formatTime';
-
-
-interface taskHeaderDTO {
-  text: string;
-  value: string;
-  width?: string;
-}
+import { taskTableHeader } from './data'
 
 let page_count: Ref<Number> = ref(20)
 let current_page: Ref<Number> = ref(1)
 let total: Ref<Number> = ref(0)
-
-const taskTableHeader: taskHeaderDTO[] = [
-  { text: '创建时间', value: 'created_time', width: '160px' },
-  { text: '标题', value: 'title' },
-  { text: '内容', value: 'description' },
-  { text: '浏览量', value: 'views', width: '80px' },
-  { text: '喜欢量', value: 'likes', width: '80px' },
-  { text: '公开作品', value: 'is_public', width: '80px' },
-  { text: '创建者', value: 'creator', width: '80px' },
-  { text: '状态', value: 'status' },
-  { text: '操作', value: 'operate' }
-]
 
 let taskTableData:any = ref(null)
 

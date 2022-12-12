@@ -15,29 +15,46 @@ const list = [
     { text: '留言管理', to: '/message', icon: 'iconfont icon-liuyan' }
 ]
 
-let mobile = ref<boolean>(false);
+// 利用是不是移动端
 let breakpoint = ref<DisplayBreakpoint | number>()
+let mobile = ref<boolean>(false);
 onMounted(() => {
     breakpoint = useDisplay().name
-    if(breakpoint.value == 'xs' || breakpoint.value == 'sm') mobile.value = true
-    store.commit('setMenuExpand', mobile.value)
+    if(breakpoint.value == 'xs' || breakpoint.value == 'sm') {
+        mobile.value = false
+    }else{
+        mobile.value = true
+        store.commit('setMenuExpand', false)
+    }
+    store.commit('setShowDrawer', mobile.value)
 })
 
-let rail = computed(() => store.state.menuExpand)
-let drawer = ref(true)
+let showDrawer = computed(() => {
+    return store.state.showDrawer
+})
+
+// 获取 pinia 的值
+let rail = computed(() => {
+    return store.state.menuExpand
+})
+
+
+
+// 如果是移动端，点击导航栏完成关闭
 const changeRail = () => {
-    if(mobile.value){
-        store.commit('setMenuExpand', true)
+    if(!mobile.value){
+        store.commit('setShowDrawer', false)
     }
 }
+
+
 
 </script>
 
 
 <template>
-  <v-navigation-drawer v-model="drawer" :rail="rail" rail-width="66" @click="changeRail">
+  <v-navigation-drawer @update:modelValue="changeRail" v-model="showDrawer" :rail="rail" rail-width="66" @click="changeRail">
     <v-list nav>
-
         <v-list-item class="my-2 rounded-lg d-flex align-center">
             <template v-slot:prepend>
                 <v-img :src="logoSvg" contain height="26" width="26" class="ml-1 mr-7"></v-img>

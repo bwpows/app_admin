@@ -1,22 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import {taskTableHeader} from "@/views/Consumption/data";
 
-interface TaskHeaderDTO {
-  text: string;
-  value: string;
-}
 
 interface TaskDataDTO {
-  [key: string]: string | number
+    [key: string]: string | number
 }
-
-
-const taskTableHeader: TaskHeaderDTO[] = [
-  { text: '创建时间', value: 'created_time' },
-  { text: '消费类型', value: 'typeName' },
-  { text: '金额', value: 'amount' },
-  { text: '用户', value: 'userName' },
-]
 
 const taskTableData: TaskDataDTO[] = [
   {
@@ -37,7 +26,6 @@ const taskTableData: TaskDataDTO[] = [
 
 
 onMounted(() => {
-
 })
 
 </script>

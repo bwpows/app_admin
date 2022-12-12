@@ -4,21 +4,13 @@ import {delUserById, getAllUser, removeUserById} from '@/api/customer';
 import http from '@/axios/index';
 import TimeFun from '@/utils/formatTime'
 import DeleteDialog from '@/components/dialog/DeleteDialog.vue'
+import {taskTableHeader} from "@/views/Customer/data";
 
 onMounted(() => {
     getClient()
 })
 
-const taskTableHeader = [
-  { text: '头像', value: 'pictrue' },
-  { text: '创建时间', value: 'create_time' },
-  { text: '昵称', value: 'username' },
-  { text: '手机号', value: 'phone' },
-  { text: '邮箱', value: 'email' },
-  { text: '角色', value: 'role' },
-  { text: '状态', value: 'is_delete' },
-  { text: '操作', value: 'operate', width: '180px' },
-]
+
 
 let deleteDialog: Ref<any> = ref({
     dialog: false,

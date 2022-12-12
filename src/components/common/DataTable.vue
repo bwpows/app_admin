@@ -27,7 +27,7 @@ defineProps<dataTable>()
     <v-table class="border_grey">
         <thead>
             <tr>
-                <th class="text-left" v-for="item in headers" :key="item.text" :style="{ width: item.width?item.width:'auto' }">
+                <th class="text-left" v-for="item in headers" :key="item.text" :style="{ minWidth: item.width?item.width:'auto' }">
                     {{ item.text }}
                 </th>
             </tr>

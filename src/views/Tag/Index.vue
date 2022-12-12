@@ -2,10 +2,11 @@
 
 import {onMounted, ref, Ref} from "vue";
 import {getAllTag} from "@/api/tag";
-import CreateTag from "@/components/views/Tag/CreateTag.vue"
 import TimeFun from '@/utils/formatTime'
+import {tableHeader} from "@/views/Tag/data";
+import CreateTag from "./components/CreateTag.vue";
 
-let page_count: Ref<number> = ref(15)
+let page_count: Ref<number> = ref(20)
 let current_page: Ref<number> = ref(1)
 let total: Ref<number> = ref(0)
 let loading: Ref<boolean> = ref(true)
@@ -15,16 +16,6 @@ onMounted(()=>{
 })
 
 let tableData = ref([]);
-const tableHeader = ref([
-    { text: '创建时间', value: 'created_time' },
-    { text: '图标', value: 'icon' },
-    { text: '名称', value: 'name' },
-    { text: '创建者', value: 'creator' },
-    { text: '类型', value: 'type' },
-    { text: '是否私有', value: 'is_public' },
-    { text: '状态', value: 'is_deleted' },
-    { text: '操作', value: 'operate', width: '180px' }
-])
 
 async function getData() {
     let data:any = {

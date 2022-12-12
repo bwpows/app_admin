@@ -1,5 +1,7 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import Index from '../layouts/Index.vue'
+
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',

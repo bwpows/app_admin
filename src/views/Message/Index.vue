@@ -8,6 +8,7 @@
 
 import {onMounted, ref} from "vue";
 import {getMessagesApi} from "@/api/message";
+import {taskTableHeader} from "@/views/Message/data";
 
 type MessageType = {
     created_time: string,
@@ -20,12 +21,7 @@ onMounted( () => {
     getMessage()
 })
 
-const taskTableHeader = [
-    { text: '创建时间', value: 'created_time' },
-    { text: '手机号', value: 'phone' },
-    { text: '邮箱', value: 'email' },
-    { text: '留言', value: 'msg' },
-]
+
 
 let taskTableData = ref<MessageType[]>()
 let loading = ref<boolean>(true)

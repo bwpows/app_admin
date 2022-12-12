@@ -4,8 +4,6 @@ import visualizer from "rollup-plugin-visualizer";
 import importToCDN from 'vite-plugin-cdn-import'
 const path = require('path');
 
-
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -28,11 +26,11 @@ export default defineConfig({
             var: 'VueRouter',
             path: 'https://cdn.bwpow.com/vue-router@4.1.6.min.js'
           },
-          {
-            name: 'vuetify',
-            var: 'vuetify',
-            path: 'https://cdn.bwpow.com/vuetify@3.0.3.min.js'
-          },
+          // {
+          //   name: 'vuetify',
+          //   var: 'vuetify',
+          //   path: 'https://cdn.bwpow.com/vuetify@3.0.3.min.js'
+          // },
         ]
       }),
   ],
