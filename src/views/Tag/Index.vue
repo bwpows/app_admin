@@ -64,7 +64,6 @@ async function getData() {
                 </template>
             </DataTable>
 
-
             <v-pagination
                 class="mt-3"
                 v-model="current_page"
