@@ -1,6 +1,10 @@
 <template>
     <v-card class="pa-4 ma-6 rounded-lg" flat>
-        <DataTable v-if="!loading" :headers="taskTableHeader" :items="taskTableData"></DataTable>
+        <DataTable v-if="!loading" :headers="taskTableHeader" :items="taskTableData">
+            <template #create_time="{item}">
+                {{ TimeFun.formatTime(new Date(item), 'yyyy-MM-dd HH:ss') }}
+            </template>
+        </DataTable>
     </v-card>
 </template>
 
@@ -9,9 +13,10 @@
 import {onMounted, ref} from "vue";
 import {getMessagesApi} from "@/api/message";
 import {taskTableHeader} from "@/views/Message/data";
+import TimeFun from '@/utils/formatTime'
 
 type MessageType = {
-    created_time: string,
+    create_time: string,
     phone: string,
     email: string,
     msg: string,
@@ -20,8 +25,6 @@ type MessageType = {
 onMounted( () => {
     getMessage()
 })
-
-
 
 let taskTableData = ref<MessageType[]>()
 let loading = ref<boolean>(true)

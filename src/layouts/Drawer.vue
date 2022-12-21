@@ -4,7 +4,6 @@ import {computed, onMounted, ref} from "vue";
 import { useDisplay, DisplayBreakpoint } from 'vuetify'
 import {store} from "@/store";
 
-
 const list = [
     { text: '主控台', to: '/home', icon: 'iconfont icon-dashboard'},
     { text: '任务列表', to: '/task', icon: 'iconfont icon-task' },
@@ -14,6 +13,7 @@ const list = [
     { text: '标签列表', to: '/tag', icon: 'iconfont icon-biaoqian' },
     { text: '留言管理', to: '/message', icon: 'iconfont icon-liuyan' }
 ]
+
 
 // 利用是不是移动端
 let breakpoint = ref<DisplayBreakpoint | number>()

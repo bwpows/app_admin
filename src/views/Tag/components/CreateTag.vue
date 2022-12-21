@@ -56,10 +56,9 @@ let selectType: TaskDataDTO[] = [
         <v-dialog
             :persistent="true"
             v-model="dialog"
-            :height="600"
-            :width="500"
+            class="d-flex justify-center align-center"
         >
-            <v-card min-width="500" class="pb-4 pt-2">
+            <v-card class="pb-4 pt-2 media-card-width mx-auto">
                 <v-card-title class="ml-2 d-flex justify-space-between">
                     <div>添加标签</div>
                     <v-icon icon="mdi-vuetify" color="red" @click="close"></v-icon>
@@ -77,3 +76,23 @@ let selectType: TaskDataDTO[] = [
         </v-dialog>
     </div>
 </template>
+
+<style scoped>
+
+@media only screen and (min-width: 1200px) {
+    .media-card-width {
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .media-card-width {
+        width: 90vw;
+    }
+}
+
+
+
+
+</style>

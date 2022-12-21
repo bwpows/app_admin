@@ -4,9 +4,10 @@ import {delUserById, getAllUser, removeUserById} from '@/api/customer';
 import http from '@/axios/index';
 import TimeFun from '@/utils/formatTime'
 import DeleteDialog from '@/components/dialog/DeleteDialog.vue'
-import {taskTableHeader} from "@/views/Customer/data";
+import {RoleEnum, taskTableHeader} from "@/views/Customer/data";
 
 onMounted(() => {
+    console.log(RoleEnum)
     getClient()
 })
 
@@ -21,6 +22,7 @@ let deleteDialog: Ref<any> = ref({
 })
 
 let taskTableData = ref([])
+
 
 const getClient = async ()=>{
   let res = await getAllUser()
@@ -73,7 +75,10 @@ const deleteUser = async () => {
                   <v-btn color="error" size="small" flat class="ml-4" v-else @click="openDeleteDialog(items, 2)">彻底删除</v-btn>
               </template>
               <template #pictrue="{ items }">
-                  <v-img v-if="items.pictrue" :src="http.baseUrl + '/' + items.pictrue " style="width: 36px;" class="rounded-lg ma-1"></v-img>
+                  <v-img :aspect-ratio="1" cover v-if="items.pictrue" :src="http.baseUrl + '/' + items.pictrue " style="width: 36px; max-height: 36px;" class="rounded-lg ma-1"></v-img>
+              </template>
+              <template #role="{ item }">
+                  {{RoleEnum[item]}}
               </template>
               <template #is_delete="{ item }">
                   <v-chip size="small" :color="item == true?'red':'success'">{{ item == true?'删除':'正常' }}</v-chip>

@@ -3,10 +3,14 @@
 import { Ref, ref, onMounted } from 'vue';
 import { getReviewStatus, putReviewStatus } from '@/api/review';
 import {getTodayView} from "@/api/view";
+import {useDisplay} from "vuetify";
 let reviewStatus:Ref<number> = ref(1)
 let reviewStatusLoading:Ref<boolean> = ref(false)
 
 let todayNum:Ref<number> = ref(0)
+
+// useDisplay()
+console.log(useDisplay().update())
 
 
 onMounted(() => {
@@ -50,19 +54,19 @@ const getTodayNum = async () => {
       <v-col xs="12" sm="6" md="6" lg="3" xl="3" cols="12">
         <v-card flat class="pa-4 rounded-lg">
           <div class="text-body-1">今日作品访问量</div>
-          <div class="mt-4 text-h5">{{ todayNum }}</div>
+          <div class="mt-4 text-h5 text-primary ">{{ todayNum }}</div>
         </v-card>
       </v-col>
         <v-col xs="12" sm="6" md="6" lg="3" xl="3" cols="12">
             <v-card flat class="pa-4 rounded-lg">
                 <div class="text-body-1">今日新增作品</div>
-                <div class="mt-4 text-h5">12</div>
+                <div class="mt-4 text-h5 text-primary">12</div>
             </v-card>
         </v-col>
         <v-col xs="12" sm="6" md="6" lg="3" xl="3" cols="12">
             <v-card flat class="pa-4 rounded-lg">
                 <div class="text-body-1">今日新增任务</div>
-                <div class="mt-4 text-h5">32</div>
+                <div class="mt-4 text-h5 text-primary">32</div>
             </v-card>
         </v-col>
       <v-col xs="12" sm="6" md="6" lg="3" xl="3" cols="12">
@@ -88,6 +92,5 @@ const getTodayNum = async () => {
       23423
     </v-card> -->
     <v-btn color="primary" class="mt-6" flat>text</v-btn>
-    <div class="mainBG text-primary">232423423</div>
   </div>
 </template>
