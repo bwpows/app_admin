@@ -9,9 +9,7 @@ let reviewStatusLoading:Ref<boolean> = ref(false)
 
 let todayNum:Ref<number> = ref(0)
 
-// useDisplay()
 console.log(useDisplay().update())
-
 
 onMounted(() => {
     getStatus()

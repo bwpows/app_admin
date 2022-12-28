@@ -71,6 +71,21 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '留言管理'
         }
+      },
+      {
+        path: '/404',
+        name: '404',
+        component: () => import('../views/404/Index.vue'),
+        meta: {
+          title: '404'
+        }
+      },
+      {
+          path: '/:pathMatch(.*)*',
+          component: () => import('../views/404/Index.vue'),
+          meta: {
+              title: '404'
+          }
       }
     ],
   },
