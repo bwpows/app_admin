@@ -31,7 +31,6 @@ let loading = ref<boolean>(true)
 
 const getMessage = async () => {
     let res = await getMessagesApi()
-    console.log(res)
     loading.value = false
     if(res.code == 200){
         taskTableData.value = res.data

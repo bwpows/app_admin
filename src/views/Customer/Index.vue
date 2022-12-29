@@ -7,7 +7,6 @@ import DeleteDialog from '@/components/dialog/DeleteDialog.vue'
 import {RoleEnum, taskTableHeader} from "@/views/Customer/data";
 
 onMounted(() => {
-    console.log(RoleEnum)
     getClient()
 })
 

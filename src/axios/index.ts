@@ -1,6 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
-import { useRouter } from 'vue-router';
 import { store } from "../store";
+import router from "@/router";
 
 // interface returnResult {
 //     code: number,
@@ -15,10 +15,9 @@ class HttpRequest {
         // this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.38:3000/';
     }
 
-    login() {
+    async login() {
         localStorage.removeItem('token');
-        const router = useRouter()
-        router.replace('/sign-in')
+        await router.replace('/sign-in')
     }
 
     getToken() {
