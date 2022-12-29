@@ -2,7 +2,9 @@
 import { useRoute } from 'vue-router';
 import {computed, onMounted, Ref, ref} from "vue";
 import {store} from "@/store";
-import {DisplayBreakpoint, useDisplay} from "vuetify";
+import { useDisplay} from "vuetify";
+import router from "@/router";
+import SignOut from './components/SignOut/Index.vue'
 
 const currentRouter = useRoute();
 let breakpoint: Ref =(useDisplay().name)
@@ -25,13 +27,21 @@ const changeRail = () => {
         store.commit('setMenuExpand', !rail.value)
     }
 }
+
+const exit = () => {
+    localStorage.clear()
+    router.replace('/')
+}
 </script>
 
 <template>
     <v-app-bar flat fluid color="mainBG">
         <i class="iconfont icon-ego-menu ml-6 text-h6" @click="changeRail"></i>
-        <div class="font-weight-bold ml-4">
-            {{ currentRouter.meta.title }}
+        <div class="d-flex justify-space-between mr-6 align-center" style="width: 100%;">
+            <div class="font-weight-bold ml-4">
+                {{ currentRouter.meta.title }}
+            </div>
         </div>
+        <SignOut />
     </v-app-bar>
 </template>
