@@ -1,32 +1,33 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import {taskTableHeader} from "@/views/Consumption/data";
+import {onMounted, ref} from 'vue';
+import {AdminDto, taskTableHeader} from "@/views/Consumption/data";
+import {getAllConsumption} from "@/api/consumption";
 
 
 interface TaskDataDTO {
     [key: string]: string | number
 }
 
-const taskTableData: TaskDataDTO[] = [
-  {
-    amount: 70,
-    type: 1,
-    userName: '张三',
-    typeName: '兼职',
-    created_time: '2021-05-31',
-  },
-  {
-    amount: 56,
-    type: 2,
-    userName: '李四',
-    typeName: '吃饭',
-    created_time: '2021-05-31',
-  },
-]
-
+let taskTableData = ref<TaskDataDTO[]>([])
 
 onMounted(() => {
+    getData()
 })
+
+let current_page = ref<number>(1)
+let page_count = ref<number>(20)
+
+const getData = async () => {
+    let obj: AdminDto = {
+        page_count: page_count.value,
+        current_page: current_page.value
+    }
+    let res = await getAllConsumption(obj)
+    console.log(res.data)
+    if(res.code == 200){
+        taskTableData.value = res.data.data
+    }
+}
 
 </script>
 
