@@ -1,15 +1,15 @@
 import http from '../axios/index';
 
 interface AllDTO {
-    readonly user_id?: String
+    readonly user_id?: string
 
-    readonly _id?: String
+    readonly _id?: string
 
-    readonly is_completed?: Boolean
+    readonly is_completed?: boolean
 
-    readonly is_deleted?: Boolean
+    readonly is_deleted?: boolean
 
-    readonly keyword?: String
+    readonly keyword?: string
 
     readonly current_page: number
 
