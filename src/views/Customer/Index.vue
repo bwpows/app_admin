@@ -56,7 +56,7 @@ const deleteUser = async () => {
     }
     if(res.code == 200){
         closeDeleteDialog()
-        getClient()
+        await getClient()
     }
 }
 

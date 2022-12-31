@@ -24,7 +24,15 @@
                 <v-card flat class="px-4 py-3 rounded-lg align-center">
                     <div class="text-body-1">小程序审核</div>
                     <div>
-                        <v-switch hide-details inset @change="updateStatus" :label="reviewStatus?'审核中':'未审核'" color="primary" v-model="reviewStatus" :loading="(reviewStatusLoading)"></v-switch>
+                        <v-switch
+                            hide-details
+                            inset
+                            @change="updateStatus"
+                            :label="reviewStatus?'审核中':'未审核'"
+                            color="primary"
+                            v-model="reviewStatus"
+                            :loading="reviewStatusLoading"
+                        ></v-switch>
                     </div>
                 </v-card>
             </v-col>
@@ -39,10 +47,6 @@
                 </v-card>
             </v-col>
         </v-row>
-        <!-- <v-card flat class="pa-6 rounded-lg my-8">
-          23423
-        </v-card> -->
-        <v-btn color="primary" class="mt-6" flat>text</v-btn>
     </div>
 </template>
 
@@ -52,7 +56,7 @@ import { Ref, ref, onMounted } from 'vue';
 import { getReviewStatus, putReviewStatus } from '@/api/review';
 import {getTodayView} from "@/api/view";
 import {useDisplay} from "vuetify";
-let reviewStatus:Ref<number> = ref(1)
+let reviewStatus:Ref<boolean> = ref(false)
 let reviewStatusLoading:Ref<boolean> = ref(false)
 
 let todayNum:Ref<number> = ref(0)
