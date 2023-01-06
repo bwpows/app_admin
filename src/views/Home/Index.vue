@@ -36,15 +36,21 @@
                     </div>
                 </v-card>
             </v-col>
-            <v-col xs="12" sm="12" md="12" lg="9" xl="6" cols="9">
+            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="9">
                 <v-card flat class="px-4 py-3 rounded-lg align-center">
-                    <div id="task-chart" style="height: 400px;"></div>
+                    <div id="task-chart" style="height: 350px;"></div>
                 </v-card>
             </v-col>
 
-            <v-col xs="12" sm="12" md="12" lg="9" xl="6" cols="9">
+            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="9">
                 <v-card flat class="px-4 py-3 rounded-lg align-center">
-                    <div id="user-chart" style="height: 400px;"></div>
+                    <div id="user-chart" style="height: 350px;"></div>
+                </v-card>
+            </v-col>
+
+            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="9">
+                <v-card flat class="px-4 py-3 rounded-lg align-center">
+                    <div id="income-chart" style="height: 350px;"></div>
                 </v-card>
             </v-col>
         </v-row>
@@ -96,21 +102,23 @@ const initTaskChart = () => {
 
     for (let i = 0; i < dateList.length; i++){
         for (let j = 0; j < dashboardData.value?.monthAddTaskList.length; j++){
-            if(dateList[j].name == dashboardData.value?.monthAddTaskList[j]._id){
-                dateList[j].taskValue = dashboardData.value?.monthAddTaskList[j].totalSum
+            if(dateList[i].name == dashboardData.value?.monthAddTaskList[j]._id){
+                dateList[i].taskValue = dashboardData.value?.monthAddTaskList[j].totalSum
             }
         }
         for (let j = 0; j < dashboardData.value?.monthAddWorkList.length; j++){
-            if(dateList[j].name == dashboardData.value?.monthAddWorkList[j]._id){
-                dateList[j].workValue = dashboardData.value?.monthAddWorkList[j].totalSum
+            if(dateList[i].name == dashboardData.value?.monthAddWorkList[j]._id){
+                dateList[i].workValue = dashboardData.value?.monthAddWorkList[j].totalSum
             }
         }
         for (let j = 0; j < dashboardData.value?.monthAddViewList.length; j++){
-            if(dateList[j].name == dashboardData.value?.monthAddViewList[j]._id){
-                dateList[j].viewValue = dashboardData.value?.monthAddViewList[j].totalSum
+            if(dateList[i].name == dashboardData.value?.monthAddViewList[j]._id){
+                dateList[i].viewValue = dashboardData.value?.monthAddViewList[j].totalSum
             }
         }
     }
+    dateList = dateList.reverse()
+    // console.log(dateList)
     let myChart = echarts.init(document.getElementById('task-chart') as HTMLDivElement)
     myChart.setOption({
         title: {
@@ -132,7 +140,7 @@ const initTaskChart = () => {
             show: false
         },
         grid: {
-            top: 15,
+            top: 30,
             left: 10,
             right: 10,
             bottom: 30,
@@ -197,7 +205,7 @@ const initTaskChart = () => {
             show: false
         },
         grid: {
-            top: 15,
+            top: 30,
             left: 10,
             right: 10,
             bottom: 30,
@@ -229,6 +237,55 @@ const initTaskChart = () => {
             },
         ]
     })
+    let myIncomeChart = echarts.init(document.getElementById('income-chart') as HTMLDivElement)
+    myIncomeChart.setOption({
+        title: {
+            text: '消费比例图'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        grid: {
+            top: 30,
+            left: 10,
+            right: 10,
+            bottom: 30,
+        },
+        legend: {
+            top: '5%',
+            left: 'center'
+        },
+        series: [
+            {
+                name: '消费比例图',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 20,
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: dashboardData.value.incomeTopList.map((item: any) => {
+                    return { value: item.amount, name: item._id === '1'?'收入': '支出' }
+                })
+            }
+        ]
+    })
 
 }
 
@@ -248,10 +305,3 @@ const getCurrentYearData = () => {
     return dateList
 }
 </script>
-<style>
-
-.aaa {
-    color: #f18a4d
-}
-
-</style>
