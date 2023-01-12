@@ -36,19 +36,19 @@
                     </div>
                 </v-card>
             </v-col>
-            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="9">
+            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="12">
                 <v-card flat class="px-4 py-3 rounded-lg align-center">
                     <div id="task-chart" style="height: 350px;"></div>
                 </v-card>
             </v-col>
 
-            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="9">
+            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="12">
                 <v-card flat class="px-4 py-3 rounded-lg align-center">
                     <div id="user-chart" style="height: 350px;"></div>
                 </v-card>
             </v-col>
 
-            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="9">
+            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="12">
                 <v-card flat class="px-4 py-3 rounded-lg align-center">
                     <div id="income-chart" style="height: 350px;"></div>
                 </v-card>
