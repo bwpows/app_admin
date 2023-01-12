@@ -4,8 +4,8 @@ import {onMounted, ref} from "vue";
 import {getAllUser} from "@/api/customer";
 
 let allUsers = ref([])
-let selectUser = ref<string>()
-let loading = ref<Boolean>(true)
+let selectUser = ref<any>()
+let loading = ref<boolean>(true)
 
 let props = defineProps({
     width: {

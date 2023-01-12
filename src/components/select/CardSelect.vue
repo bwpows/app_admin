@@ -5,7 +5,7 @@ import {getAllUser} from "@/api/customer";
 import {getAllCards} from "@/api/card";
 
 let allCards = ref([])
-let selectCard = ref<string>()
+let selectCard = ref<any>()
 let loading = ref<boolean>(true)
 
 let props = defineProps({
