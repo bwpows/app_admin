@@ -6,6 +6,8 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 onMounted(() => {
+  console.log(333);
+  
   if(!localStorage.getItem('token')){
     router.replace('/sign-in')
   }
