@@ -30,7 +30,7 @@
                             @change="updateStatus"
                             :label="dashboardData.reviewStatus?'审核中':'未审核'"
                             color="primary"
-                            v-model="reviewStatus"
+                            v-model="dashboardData.reviewStatus"
                             :loading="loading"
                         ></v-switch>
                     </div>
