@@ -65,7 +65,6 @@ import {getDashboard} from "@/api/dashboard";
 import FormatTime from "@/utils/formatTime";
 import * as echarts from 'echarts';
 
-let reviewStatus:Ref<boolean> = ref(false)
 let reviewStatusLoading:Ref<boolean> = ref(false)
 let dashboardData = ref()
 let loading = ref<Boolean>(true)
@@ -78,7 +77,7 @@ onMounted(() => {
  */
 const updateStatus = async ()=>{
     reviewStatusLoading.value = true
-    await putReviewStatus({status: reviewStatus.value})
+    await putReviewStatus({status: dashboardData.value.reviewStatus})
     await getData()
     reviewStatusLoading.value = false
 }

@@ -11,8 +11,8 @@ class HttpRequest {
     public readonly baseUrl: string;
 
     constructor() {
-        // this.baseUrl = 'https://app.bwpow.com:3000/'
-        this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.38:3000/';
+        this.baseUrl = 'https://app.bwpow.com:3000/'
+        // this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.3:3000/';
     }
 
     async login() {
