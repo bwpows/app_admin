@@ -7,11 +7,15 @@ import router from "@/router";
 //     message: string,
 //     data?: Object
 // }
+
+// let baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.3:3000/'
+export const baseUrl = 'https://app.bwpow.com:3000/'
+
 class HttpRequest {
     public readonly baseUrl: string;
 
     constructor() {
-        this.baseUrl = 'https://app.bwpow.com:3000/'
+        this.baseUrl = baseUrl
         // this.baseUrl = process.env.NODE_ENV == 'production'?'https://app.bwpow.com:3000/':'https://192.168.3.3:3000/';
     }
 

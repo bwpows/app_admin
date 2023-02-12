@@ -11,7 +11,8 @@ const list = [
     { text: '消费记录', to: '/consumption', icon: 'iconfont icon-consumption' },
     { text: '客户列表', to: '/customer', icon: 'iconfont icon-customer' },
     { text: '标签列表', to: '/tag', icon: 'iconfont icon-biaoqian' },
-    { text: '留言管理', to: '/message', icon: 'iconfont icon-liuyan' }
+    { text: '留言管理', to: '/message', icon: 'iconfont icon-liuyan' },
+    { text: '工单管理', to: '/work-order', icon: 'iconfont icon-workorder' },
 ]
 
 

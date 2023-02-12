@@ -35,7 +35,7 @@ const cancelEvent = () => {
 </script>
 
 <template>
-    <v-dialog v-model="props.dialog">
+    <v-dialog v-model="props.dialog" width="auto">
         <v-card class="pa-6" style="width: 450px;">
             <div v-if="props.title" class="text-h6">{{ props.title }}</div>
             <div v-if="props.content" class="my-4">{{ props.content }}</div>

@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7216349",
+      "name": "工单",
+      "font_class": "workorder",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "1376055",
       "name": "退出登录",
       "font_class": "tuichudenglu",
