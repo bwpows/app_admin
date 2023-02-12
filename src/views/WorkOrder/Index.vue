@@ -1,0 +1,78 @@
+<template>
+    <v-card class="pa-4 ma-6 rounded-lg" flat>
+        <DataTable :headers="workOrderTableHeader" :items="taskTableData">
+            <template #created_time="{item}">
+                {{formatTime.formatTime(new Date(item), 'yyyy-MM-dd HH:mm:ss')}}
+            </template>
+            <template #status="{item, items}">
+                
+                <div v-if="items.is_deleted" class="text-center rounded bg-error" style="width: 60px; line-height: 30px;">已删除</div>
+                <div v-else class="text-center rounded" :class="'bg-'+statuType[item || 10].color" style="width: 60px; line-height: 30px;">{{statuType[item || 10].title}}</div>
+            </template>
+            <template #operate="{items}">
+                <template v-if="!items.is_deleted">
+                    <v-btn size="small" color="error" flat v-if="!items.status && !items.is_deleted" @click="openDeleteDialog(items)">立即删除</v-btn>
+                    <v-btn size="small" color="primary" flat v-if="items.status < 20" class="mr-3" @click="modifyWorkOrder(items._id, 20)">开始处理</v-btn>
+                    <v-btn size="small" color="success" flat v-if="items.status < 30" class="mr-3" @click="modifyWorkOrder(items._id, 30)">标记完成</v-btn>
+                </template>
+            </template>
+        </DataTable>
+    </v-card>
+
+    <DeleteDialog :dialog="deleteDialog" :loading="deleteLoading" @cancelEvent="deleteDialog = false" @confirmEvent="confirmDeleteDialog" />
+</template>
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue';
+
+import { getAllWorkOrder, deleteWorkOrder, updateWorkOrder } from '@/api/workOrder';
+
+import { workOrderTableHeader, statuType } from './data'
+
+import formatTime from '@/utils/formatTime'
+
+import DeleteDialog from '@/components/dialog/DeleteDialog.vue'
+
+onMounted(() => {
+    getWorkOrder()
+})
+
+let deleteDialog = ref<boolean>(false)
+
+let taskTableData = ref([])
+
+async function getWorkOrder(){
+    let res = await getAllWorkOrder()
+    if(res.code == 200){
+        taskTableData.value = res.data
+    }
+}
+
+
+async function modifyWorkOrder(_id: string, status: number) {
+    await updateWorkOrder(_id, {status})
+    getWorkOrder()
+}
+
+
+
+let deleteData:any = {}
+let deleteLoading = ref<boolean>(false)
+
+async function openDeleteDialog(item) {
+    deleteData = item
+    deleteDialog.value = true
+}
+
+async function confirmDeleteDialog() {
+    deleteLoading.value = true;
+    await delWorkOrder(deleteData._id)
+    deleteDialog.value = false
+    
+}
+
+async function delWorkOrder(_id: string) {
+    let res = await deleteWorkOrder(_id)
+    getAllWorkOrder()
+}
+
+</script>

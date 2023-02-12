@@ -73,6 +73,14 @@ const routes: RouteRecordRaw[] = [
         }
       },
       {
+        name: "OrderWork",
+        component: () => import('../views/WorkOrder/Index.vue'),
+        path: "/work-order",
+        meta: {
+          title: '工单管理'
+        }
+      },
+      {
         path: '/404',
         name: '404',
         component: () => import('../views/404/Index.vue'),
