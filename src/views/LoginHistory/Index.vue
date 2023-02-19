@@ -11,7 +11,10 @@
                 <v-img v-if="item" :src="baseUrl + item" width="50" height="50"></v-img>
             </template>
             <template #type="{item}">
-                {{typeEnum[item]}}
+                {{ typeEnum[item] }}
+            </template>
+            <template #ip="{item}">
+                {{ computedIp(item) }}
             </template>
         </DataTable>
     </v-card>
@@ -19,7 +22,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import TimeFun from '@/utils/formatTime'
 import {historyTableHeader, HistoryType, typeEnum} from "@/views/LoginHistory/data";
 import {getAllHistory} from "@/api/loginHistory";
@@ -27,6 +30,10 @@ import {baseUrl} from "@/axios";
 
 onMounted( () => {
     getHistory()
+})
+
+const computedIp=computed(()=>(item:string)=>{ //计算属性传递参数
+    return item.replaceAll(':', '').replaceAll('f', '')
 })
 
 let historyTableData = ref<HistoryType[]>()

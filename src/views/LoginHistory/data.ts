@@ -35,6 +35,7 @@ export const historyTableHeader: HistoryHeaderDTO[] = [
 	{ text: '头像', value: 'pictrue' },
 	{ text: '用户名', value: 'username', width: '100px' },
 	{ text: '手机号', value: 'phone' },
+	{ text: 'IP', value: 'ip' },
 	{ text: '浏览器', value: 'user_agent' },
 	{ text: '语言', value: 'language', width: '200px' },
 	{ text: '平台', value: 'platform' },
