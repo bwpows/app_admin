@@ -81,6 +81,14 @@ const routes: RouteRecordRaw[] = [
         }
       },
       {
+        name: 'LoginHistory',
+        component: () => import('../views/LoginHistory/Index.vue'),
+        path: '/login-history',
+        meta: {
+          title: '登录历史'
+      }
+      },
+      {
         path: '/404',
         name: '404',
         component: () => import('../views/404/Index.vue'),
