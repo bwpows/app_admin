@@ -64,7 +64,7 @@ async function modifyWorkOrder(_id: string, status: number) {
 let deleteData:any = {}
 let deleteLoading = ref<boolean>(false)
 
-async function openDeleteDialog(item) {
+async function openDeleteDialog(item: any) {
     deleteData = item
     deleteDialog.value = true
 }
