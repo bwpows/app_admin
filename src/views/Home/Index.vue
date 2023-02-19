@@ -48,11 +48,11 @@
                 </v-card>
             </v-col>
 
-            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="12">
-                <v-card flat class="px-4 py-3 rounded-lg align-center">
-                    <div id="income-chart" style="height: 350px;"></div>
-                </v-card>
-            </v-col>
+<!--            <v-col xs="12" sm="12" md="12" lg="6" xl="6" cols="12">-->
+<!--                <v-card flat class="px-4 py-3 rounded-lg align-center">-->
+<!--                    <div id="income-chart" style="height: 350px;"></div>-->
+<!--                </v-card>-->
+<!--            </v-col>-->
         </v-row>
     </div>
 </template>
@@ -236,55 +236,55 @@ const initTaskChart = () => {
             },
         ]
     })
-    let myIncomeChart = echarts.init(document.getElementById('income-chart') as HTMLDivElement)
-    myIncomeChart.setOption({
-        title: {
-            text: '消费比例图'
-        },
-        tooltip: {
-            trigger: 'item'
-        },
-        grid: {
-            top: 30,
-            left: 10,
-            right: 10,
-            bottom: 30,
-        },
-        legend: {
-            top: '5%',
-            left: 'center'
-        },
-        series: [
-            {
-                name: '消费比例图',
-                type: 'pie',
-                radius: ['40%', '70%'],
-                avoidLabelOverlap: false,
-                itemStyle: {
-                    borderRadius: 10,
-                    borderColor: '#fff',
-                    borderWidth: 2
-                },
-                label: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
-                    label: {
-                        show: true,
-                        fontSize: 20,
-                        fontWeight: 'bold'
-                    }
-                },
-                labelLine: {
-                    show: false
-                },
-                data: dashboardData.value.incomeTopList.map((item: any) => {
-                    return { value: item.amount, name: item._id === '1'?'收入': '支出' }
-                })
-            }
-        ]
-    })
+    // let myIncomeChart = echarts.init(document.getElementById('income-chart') as HTMLDivElement)
+    // myIncomeChart.setOption({
+    //     title: {
+    //         text: '消费比例图'
+    //     },
+    //     tooltip: {
+    //         trigger: 'item'
+    //     },
+    //     grid: {
+    //         top: 30,
+    //         left: 10,
+    //         right: 10,
+    //         bottom: 30,
+    //     },
+    //     legend: {
+    //         top: '5%',
+    //         left: 'center'
+    //     },
+    //     series: [
+    //         {
+    //             name: '消费比例图',
+    //             type: 'pie',
+    //             radius: ['40%', '70%'],
+    //             avoidLabelOverlap: false,
+    //             itemStyle: {
+    //                 borderRadius: 10,
+    //                 borderColor: '#fff',
+    //                 borderWidth: 2
+    //             },
+    //             label: {
+    //                 show: false,
+    //                 position: 'center'
+    //             },
+    //             emphasis: {
+    //                 label: {
+    //                     show: true,
+    //                     fontSize: 20,
+    //                     fontWeight: 'bold'
+    //                 }
+    //             },
+    //             labelLine: {
+    //                 show: false
+    //             },
+    //             data: dashboardData.value.incomeTopList.map((item: any) => {
+    //                 return { value: item.amount, name: item._id === '1'?'收入': '支出' }
+    //             })
+    //         }
+    //     ]
+    // })
 
 }
 
