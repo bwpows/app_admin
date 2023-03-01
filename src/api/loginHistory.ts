@@ -4,7 +4,7 @@ const baseUrl = '/login/'
 
 export function getAllHistory(params: any){
 	return http.request({
-		url: baseUrl,
+		url: baseUrl + 'admin',
 		method: 'GET',
 		params
 	})

@@ -13,8 +13,8 @@ const list = [
     { text: '留言管理', to: '/message', icon: 'iconfont icon-liuyan' },
     { text: '工单管理', to: '/work-order', icon: 'iconfont icon-workorder' },
     { text: '登录历史', to: '/login-history', icon: 'iconfont icon-lishi' },
+    { text: '聊天历史', to: '/chat', icon: 'iconfont icon-chat' },
 ]
-
 
 // 利用是不是移动端
 let breakpoint = ref<DisplayBreakpoint | number>()

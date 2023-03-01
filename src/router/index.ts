@@ -86,7 +86,15 @@ const routes: RouteRecordRaw[] = [
         path: '/login-history',
         meta: {
           title: '登录历史'
-      }
+        }
+      },
+      {
+        name: 'Chat',
+        component: () => import('../views/Chat/Index.vue'),
+        path: '/chat',
+        meta: {
+          title: '登录历史'
+        }
       },
       {
         path: '/404',

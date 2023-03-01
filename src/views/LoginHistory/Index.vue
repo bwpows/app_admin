@@ -1,5 +1,6 @@
 <template>
     <v-card class="pa-4 ma-6 rounded-lg" flat>
+        <SelectUser @confirmEvent="selectUser"></SelectUser>
         <DataTable v-if="!loading" :headers="historyTableHeader" :items="historyTableData">
             <template #created_at="{item}">
                 {{ TimeFun.formatTime(new Date(item), 'yyyy-MM-dd HH:ss') }}
@@ -34,6 +35,7 @@ import TimeFun from '@/utils/formatTime'
 import {historyTableHeader, HistoryType, typeEnum} from "@/views/LoginHistory/data";
 import {getAllHistory} from "@/api/loginHistory";
 import {baseUrl} from "@/axios";
+import SelectUser from "@/components/select/UserSelect.vue"
 
 onMounted( () => {
     getHistory()
@@ -49,17 +51,28 @@ let loading = ref<boolean>(true)
 let page_count: Ref<number> = ref(20)
 let current_page: Ref<number> = ref(1)
 let total: Ref<number> = ref(0)
+let selectedUser_id: Ref<string> = ref('')
 
 const getHistory = async () => {
-    let res = await getAllHistory({
+    let obj:any = {
         current_page: current_page.value,
         page_count: page_count.value,
-    })
+    };
+    if(selectedUser_id.value){
+        obj.user_id = selectedUser_id.value
+    }
+    let res = await getAllHistory(obj)
     loading.value = false
     if(res.code == 200){
         historyTableData.value = res.data.data || [];
         total.value = res.data.total
     }
+}
+
+const selectUser = async (user_id:string) => {
+    selectedUser_id.value = user_id;
+    current_page.value = 1;
+    await getHistory()
 }
 
 </script>

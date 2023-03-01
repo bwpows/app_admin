@@ -29,6 +29,12 @@ const getData = async () => {
     let res = await getAllUser()
     loading.value = false
     if(res.code == 200){
+        for (let i = 0; i < res.data.length; i++) {
+            if(!res.data[i].username){
+                res.data[i].username = res.data[i].phone
+            }
+        }
+        console.log(res.data)
         allUsers.value = res.data
     }
 }

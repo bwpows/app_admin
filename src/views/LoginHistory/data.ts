@@ -20,7 +20,7 @@ export type HistoryType = {
 
 export enum typeEnum {
 	'密码登录'= 1,
-	'验证吗登录',
+	'验证码登录',
 	'微信登录'
 }
 
