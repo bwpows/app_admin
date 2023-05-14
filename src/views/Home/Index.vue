@@ -65,7 +65,6 @@ import {getDashboard} from "@/api/dashboard";
 import FormatTime from "@/utils/formatTime";
 import * as echarts from 'echarts';
 
-let reviewStatusLoading:Ref<boolean> = ref(false)
 let dashboardData = ref()
 let loading = ref<Boolean>(true)
 onMounted(() => {
@@ -76,17 +75,14 @@ onMounted(() => {
  * 修改审核状态
  */
 const updateStatus = async ()=>{
-    reviewStatusLoading.value = true
     await putReviewStatus({status: dashboardData.value.reviewStatus})
     await getData()
-    reviewStatusLoading.value = false
 }
 
 /**
  * 获取数据
  */
 const getData = async () => {
-    loading.value = true
     let res = await getDashboard()
     loading.value = false
     dashboardData.value = res.data
@@ -117,7 +113,6 @@ const initTaskChart = () => {
         }
     }
     dateList = dateList.reverse()
-    // console.log(dateList)
     let myChart = echarts.init(document.getElementById('task-chart') as HTMLDivElement)
     myChart.setOption({
         title: {
@@ -135,9 +130,11 @@ const initTaskChart = () => {
             },
             data: dateList.map(item => item.name.slice(5, 8) + '月')
         },
-        yAxis: {
+        yAxis: [{
             show: false
-        },
+        },{
+            show: false
+        }],
         grid: {
             top: 30,
             left: 10,
@@ -167,7 +164,8 @@ const initTaskChart = () => {
                             color: '#F18A4D'
                         }
                     ])
-                }
+                },
+                yAxisIndex: 0
             },
             {
                 symbol: 'none',
@@ -178,7 +176,8 @@ const initTaskChart = () => {
                 itemStyle: {
                     borderRadius: [10, 10, 10, 10],
                     color: '#a78e7a'
-                }
+                },
+                yAxisIndex: 1
             }
         ]
     })

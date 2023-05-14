@@ -33,7 +33,7 @@ let submit = async () => {
             <v-img :src="BgImage"></v-img>
         </v-col>
         <v-col md="4" sm="12" xs="12" class="pa-0 d-flex align-center pb-16" style="height: 100vh;">
-            <div style="width: 100%; margin: 0 60px;">
+            <div style="width: 100%; margin: 0 60px;" class="login-box">
                 <div style="color: #333; font-size: 32px; font-weight: bold;">登录您的账号</div>
                 <div class="mt-4 text-grey-darken-1">更好的管理 app bwpow 后台</div>
                 <v-text-field label="请输入手机号" variant="underlined" class="mt-8" v-model="loginInfo.phone"></v-text-field>
@@ -64,5 +64,11 @@ input:focus {
     .login-auto {
         display: block;
     }
+}
+
+.login-box :-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color:transparent;
+    background-image: none;
+    transition: background-color 50000s ease-in-out 0s;
 }
 </style>
