@@ -2,9 +2,10 @@ import http from '../axios/index';
 
 const baseUrl: string = '/openai'
 
-export function getChatHistory(){
+export function getChatHistory(data: any){
 	return http.request({
 		url: baseUrl + '/admin',
-		method: 'GET'
+		method: 'GET',
+		data
 	})
 }

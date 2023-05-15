@@ -78,7 +78,7 @@ const changeRail = () => {
     </v-list>
     <template #append>
       <div class="py-4 pt-0 text-center mt-2 text-grey">
-        v 1.0.1
+        v 1.0.3
       </div>
     </template>
   </v-navigation-drawer>
