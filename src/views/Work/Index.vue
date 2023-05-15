@@ -52,8 +52,8 @@ async function getAll(){
               {{ TimeFun.formatTime(new Date(items.end_time), 'yyyy-MM-dd HH:ss') }}
           </template>
           <template #is_public="{ item }">
-              <v-chip :color="item?'primary':'error'" size="small">
-                  {{ item?'是':'否' }}
+              <v-chip :color="item?'success':'primary'" size="small">
+                  {{ item?'公开':'隐私' }}
               </v-chip>
           </template>
 

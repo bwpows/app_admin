@@ -5,8 +5,8 @@
                 {{formatTime.formatTime(new Date(item), 'yyyy-MM-dd HH:mm:ss')}}
             </template>
             <template #status="{item, items}">
-                <div v-if="items.is_deleted" class="text-center rounded bg-error" style="width: 60px; line-height: 30px;">已删除</div>
-                <div v-else class="text-center rounded" :class="'bg-'+statuType[item || 10].color" style="width: 60px; line-height: 30px;">{{statuType[item || 10].title}}</div>
+                <v-chip v-if="items.is_deleted" color="error" size="small">已删除</v-chip>
+                <v-chip v-else :color="stateType[item || 10].color" size="small">{{stateType[item || 10].title}}</v-chip>
             </template>
             <template #images="{item}">
                 <div class="d-flex flex-wrap">
@@ -30,7 +30,7 @@ import { onMounted, ref } from 'vue';
 
 import { getAllWorkOrder, deleteWorkOrder, updateWorkOrder } from '@/api/workOrder';
 
-import { workOrderTableHeader, statuType } from './data'
+import { workOrderTableHeader, stateType } from './data'
 
 import formatTime from '@/utils/formatTime'
 

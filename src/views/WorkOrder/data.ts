@@ -14,7 +14,7 @@ export const workOrderTableHeader: WorkOrderHeaderDTO[] = [
     { text: '操作', value: 'operate', width: '300px' }
 ]
 
-export const statuType = {
+export const stateType = {
     10 : {title: '待处理', color: 'grey'},
     20 : {title: '处理中', color: 'primary'},
     30 : {title: '已完成', color: 'success'},
