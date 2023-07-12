@@ -3,6 +3,7 @@ import {ref, onMounted, Ref} from 'vue';
 import { getAllTask, deleteTask } from '@/api/task';
 import TimeFun from '@/utils/formatTime'
 import {taskTableHeader} from "@/views/Task/data";
+import EditTaskDialog from './components/Edit.vue'
 
 
 let taskTableData:any = ref(null)
@@ -69,15 +70,33 @@ function changeConditions(){
 async function deleteTaskById(item:any){
   item.deleteLoading = true
   let res = await deleteTask(item._id)
-  if(res.data.code === 200) {
+  if(res.code === 200) {
     await getAll()
   }
+}
+
+const editData = ref({
+    dialog: false,
+    data: {}
+})
+
+// 编辑任务
+// 打开编辑任务弹窗
+async function openEditWorkDialog(item: any) {
+    editData.value = {
+        dialog: true,
+        data: item
+    }
+}
+
+async function closeEditWorkDialog() {
+    editData.value.dialog = false;
 }
 
 </script>
 
 <template>
-  <v-card class="pa-4 ma-6 rounded-lg" flat>
+    <v-card class="pa-4 ma-6 rounded-lg" flat>
       <div class="mb-4">
           <v-select
               v-model="selectedStatus"
@@ -106,6 +125,7 @@ async function deleteTaskById(item:any){
               <v-chip color="error" size="small" v-else>未完成</v-chip>
           </template>
           <template #operate="{ items }">
+            <v-btn class="mr-4" color="primary" size="small" flat @click="openEditWorkDialog(items)" :loading="items.deleteLoading">编辑</v-btn>
             <v-btn color="error" size="small" flat @click="deleteTaskById(items)" :loading="items.deleteLoading">删除</v-btn>
           </template>
           <template #creator="{ items }">
@@ -122,4 +142,5 @@ async function deleteTaskById(item:any){
           @update:modelValue="getAll()"
       ></v-pagination>
   </v-card>
+    <EditTaskDialog :dialog="editData.dialog" :data="editData.data" @close="closeEditWorkDialog" />
 </template>

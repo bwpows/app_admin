@@ -7,3 +7,11 @@ export function getAllWork(){
         method: 'get',
     })
 }
+
+export function editWorkById(_id: string, data: Object) {
+    return http.request({
+        url: '/publish/' + _id,
+        method: 'PUT',
+        data
+    })
+}

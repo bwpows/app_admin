@@ -30,3 +30,11 @@ export function deleteTask(_id: string){
         method: 'delete',
     })
 }
+
+export function editTaskById(_id: string, data: Object) {
+    return http.request({
+        url: '/task/' + _id,
+        method: 'PUT',
+        data
+    })
+}
